@@ -27,10 +27,10 @@ const App = () => {
 
         {/* right side start  */}
         <div className="lg:col-span-1">
-            <h1 className="text-2xl font-semibold py-10">Selected blogs</h1>
+            <h1 className="text-2xl font-semibold py-8">Selected blogs</h1>
 
             {
-              bookMarked.map((marked, idx) => <p key={idx}>{marked.title}</p>)
+              bookMarked.map((marked, idx) => <p className="bg-red-500 my-4 p-4 text-white rounded-2xl" key={idx}>{marked.title}</p>)
             }
 
         </div>
