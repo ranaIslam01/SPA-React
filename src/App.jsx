@@ -1,28 +1,40 @@
+import { useState } from "react";
 import Blogs from "./components/Blogs/Blogs";
 import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
-  const handleBookMark = () => {
-    console.log("click the handleBookMark");
+  const [bookMarked, setBookMarked] = useState([]);
+  const [change, setChange] = useState(0);
+
+  const handleChange = () => {
+    setChange(change + 1);
+  }
+
+  const handleBookMark = (blog) => {
+    setBookMarked([...bookMarked,blog]);
   }
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar change = {change}></Navbar>
       
     {/* Main Container Start */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-center md:pb-10 md:px-10 md:gap-6">
         {/* left side start  */}
-        <div className="lg:col-span-2  border">
-            <Blogs handleBookMark = {handleBookMark}></Blogs>
+        <div className="lg:col-span-2 ">
+            <Blogs handleBookMark = {handleBookMark} handleChange = {handleChange} ></Blogs>
         </div>
         {/* left side end  */}
 
         {/* right side start  */}
-        <div className="lg:col-span-1 border">
-            <h1 className="text-3xl font-semibold py-10">Selected blogs</h1>
+        <div className="lg:col-span-1">
+            <h1 className="text-2xl font-semibold py-10">Selected blogs</h1>
+
+            {
+              bookMarked.map((marked, idx) => <p key={idx}>{marked.title}</p>)
+            }
+
         </div>
         {/* right side end  */}
-
 
       </div>
     </div>

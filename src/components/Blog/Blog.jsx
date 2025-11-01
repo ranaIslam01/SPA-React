@@ -1,7 +1,7 @@
 import React from "react";
 import { FaBookmark } from "react-icons/fa";
 
-const Blog = ({ blog, handleBookMark }) => {
+const Blog = ({ blog, handleBookMark,handleChange }) => {
   const {
     author,
     author_img,
@@ -16,7 +16,7 @@ const Blog = ({ blog, handleBookMark }) => {
         <figure>
           <img src={cover} />
         </figure>
-        <div className="card-body space-y-3 ">
+        <div className="card-body space-y-2 ">
           <div className="flex justify-between items-center">
               <div className="flex items-center gap-3 ">
                     <img className="w-10 h-10 object-cover rounded-full cursor-pointer" src={author_img} alt= {author} />
@@ -25,19 +25,20 @@ const Blog = ({ blog, handleBookMark }) => {
                     <h1 className="font-medium">{author}</h1>
                   </div>
               </div>
-            <div onClick={handleBookMark} className="flex items-center gap-2 cursor-pointer">
-              <h1 className="font-semibold text-base"> {reading_time} </h1>
-              <FaBookmark></FaBookmark>
+            <div onClick={() => handleBookMark(blog)} className="cursor-pointer">
+              <FaBookmark onClick={handleChange} size={20}></FaBookmark>
             </div>
           </div>
               <h2 className="card-title">{title}</h2>
-            <div className="flex gap-2 justify-center">
+            <div className="flex flex-row">
+              <div className="flex gap-2">
                 {
-                  blog.hashtags.map((has,idx) => <p key={idx} className="text-blue-600 underline  rounded-md cursor-pointer"> {has}</p>)
+                  blog.hashtags.map((has,idx) => <p key={idx} className="text-blue-600 underline cursor-pointer"> #{has}</p>)
                 }
             </div>
-          <div className="card-actions flex justify-center">
-            <button className="btn btn-primary">Mark As Read</button>
+            </div>
+          <div className="card-actions justify-between items-center">
+            <h1 className="font-semibold text-lg hover:underline cursor-pointer"> {reading_time} </h1>
             <button className="btn btn-primary">Mark As Read</button>
           </div>
         </div>
